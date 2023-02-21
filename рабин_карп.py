@@ -6,12 +6,13 @@ for i in range(2, n + 1):
             break
     else:
         a.append(str(i))
-print(a, len(a))
+#print(a, len(a))
 stroka = "".join(a)
-print(stroka)
 
 x = 10 #Размер алфавита
 m = 2 #Длина шаблона
+
+
 def hash(chast_stroki, x, m):
     hash = 0
     for i in range(m):
@@ -24,7 +25,6 @@ def hash(chast_stroki, x, m):
 
 # massiv_hash массив хэшей, соответствующий каждой позиции строки размером длины шаблона
 massiv_hash = [hash(stroka[i:i + m], x, m) for i in range(len(stroka) - m)]
-print("a", massiv_hash)
 
 
 def rabin_karp(stroka, massiv_hash, shablon, x, m):
@@ -43,11 +43,19 @@ def rabin_karp(stroka, massiv_hash, shablon, x, m):
 kolvo_vxogdenyi = {}
 for i in range(10, 100):
     kolvo_vxogdenyi[i] = rabin_karp(stroka, massiv_hash, str(i), x, m)
-print("kolv", kolvo_vxogdenyi)
+
 sorted_pairs = sorted(kolvo_vxogdenyi.values(), reverse=True)
-print(sorted_pairs)
+kkk = sorted_pairs[0] #  переменная в ответе, отвечающее за то, сколько раз встречается шаблон
+for i in kolvo_vxogdenyi:
+    if kolvo_vxogdenyi[i] == kkk:
+        ckok_ras_vstr = i
 c = sorted_pairs.count(sorted_pairs[0])
-print('(рабин-карп) количество наиболее часто встречающихся двузначных чисел: ', c)
+print('(рабин-карп) количество наиболее часто встречающихся двузначных чисел:', c, ", а именно:")
+print("шаблон который наиболее часто встречается:", kkk)
+print("сколько раз встречается данный шаблон:", ckok_ras_vstr)
+
+
+
 
 
 
